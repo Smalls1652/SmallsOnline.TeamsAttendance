@@ -95,8 +95,8 @@ function Get-ExoTeamsAttendance {
         )
     }
     
-    $meetingDetailRecords = Get-ExoMeetingDetailRecords -MeetingOrganizerUpn $MeetingOrganizerUpn -StartDate $StartDate -EndDate $EndDate
-    $meetingParticipantDetailRecords = Get-ExoMeetingParticipantDetailRecords -MeetingOrganizerUpn $MeetingOrganizerUpn -StartDate $StartDate -EndDate $EndDate
+    $meetingDetailRecords = Get-ExoMeetingDetailRecords -MeetingOrganizerUpn $MeetingOrganizerUpn -StartDate $StartDate -EndDate $EndDate -TimeZone $timezoneInfo
+    $meetingParticipantDetailRecords = Get-ExoMeetingParticipantDetailRecords -MeetingOrganizerUpn $MeetingOrganizerUpn -StartDate $StartDate -EndDate $EndDate -TimeZone $timezoneInfo
 
     Write-Verbose "Merging collected data."
 
