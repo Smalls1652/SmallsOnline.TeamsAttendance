@@ -7,7 +7,9 @@ function Get-ExoMeetingDetailRecords {
         [Parameter(Position = 1, Mandatory)]
         [System.DateOnly]$StartDate,
         [Parameter(Position = 2, Mandatory)]
-        [System.DateOnly]$EndDate
+        [System.DateOnly]$EndDate,
+        [Parameter(Position = 3, Mandatory)]
+        [System.TimeZoneInfo]$TimeZone
     )
 
     $meetingDetailProgressSplat = @{
@@ -31,8 +33,10 @@ function Get-ExoMeetingDetailRecords {
             $meetingDetailCompletionPercentage = 0
         }
 
-        $loopStartDate = [datetime]::Parse("$($currentLoopDate.ToString("yyyy-MM-dd")) 00:00 -4:00")
-        $loopEndDate = [datetime]::Parse("$($currentLoopDate.ToString("yyyy-MM-dd")) 23:59 -4:00")
+        $utcOffset = $TimeZone.GetUtcOffset([datetime]::Parse("$($currentLoopDate.ToString("yyyy-MM-dd")) 00:00")).ToString("\-hh\:mm")
+
+        $loopStartDate = [System.TimeZoneInfo]::ConvertTimeToUtc([datetime]::Parse("$($currentLoopDate.ToString("yyyy-MM-dd")) 00:00 $($utcOffset)"), $TimeZone)
+        $loopEndDate = [System.TimeZoneInfo]::ConvertTimeToUtc([datetime]::Parse("$($currentLoopDate.ToString("yyyy-MM-dd")) 23:59 $($utcOffset)"), $TimeZone)
 
         Write-Progress @meetingDetailProgressSplat -CurrentOperation "Getting audit entries for '$($currentLoopDate.ToString("yyyy-MM-dd"))'" -PercentComplete $meetingDetailCompletionPercentage
         Write-Verbose "Getting audit entries between '$($loopStartDate.ToString("yyyy-MM-dd HH:mm"))' and '$($loopEndDate.ToString("yyyy-MM-dd HH:mm"))'."
