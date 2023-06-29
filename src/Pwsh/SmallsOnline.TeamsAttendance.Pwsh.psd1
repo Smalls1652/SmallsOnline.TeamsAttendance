@@ -35,15 +35,19 @@
     RequiredModules    = @(
         @{
             "ModuleName"    = "Microsoft.Graph.Authentication";
-            "ModuleVersion" = "1.28.0"
+            "ModuleVersion" = "1.28.0";
         },
         @{
             "ModuleName"    = "Microsoft.Graph.Users";
-            "ModuleVersion" = "1.28.0"
+            "ModuleVersion" = "1.28.0";
         },
         @{
             "ModuleName"    = "ExchangeOnlineManagement";
-            "ModuleVersion" = "3.2.0"
+            "ModuleVersion" = "3.2.0";
+        },
+        @{
+            "ModuleName"    = "ImportExcel";
+            "ModuleVersion" = "7.8.5";
         }
     )
 
@@ -60,7 +64,8 @@
     # NestedModules = @()
 
     FunctionsToExport  = @(
-        "Get-ExoTeamsAttendance"
+        "Get-ExoTeamsAttendance",
+        "Export-ExoTeamsAttendance"
     )
 
     CmdletsToExport    = @()
