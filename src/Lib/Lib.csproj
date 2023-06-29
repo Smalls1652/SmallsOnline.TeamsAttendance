@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RootNamespace>SmallsOnline.TeamsAttendance.Lib</RootNamespace>
+    <AssemblyName>SmallsOnline.TeamsAttendance.Lib</AssemblyName>
+  </PropertyGroup>
+
+</Project>
