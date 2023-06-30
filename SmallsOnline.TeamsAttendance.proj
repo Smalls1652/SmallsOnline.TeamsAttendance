@@ -1,0 +1,70 @@
+﻿<Project>
+    <PropertyGroup>
+        <PwshModuleName>SmallsOnline.TeamsAttendance.Pwsh</PwshModuleName>
+        <DirSeparatorChar>$([System.IO.Path]::DirectorySeparatorChar)</DirSeparatorChar>
+        <ClassLibDirPath>$(MSBuildThisFileDirectory)src$(DirSeparatorChar)Lib</ClassLibDirPath>
+        <PwshModuleDirPath>$(MSBuildThisFileDirectory)src$(DirSeparatorChar)Pwsh</PwshModuleDirPath>
+        <ModuleDocsDirPath>$(MSBuildThisFileDirectory)docs</ModuleDocsDirPath>
+        <BuildDirPath>$(MSBuildThisFileDirectory)build</BuildDirPath>
+        <ModuleBuildOutPath>$(BuildDirPath)$(DirSeparatorChar)SmallsOnline.TeamsAttendance.Pwsh</ModuleBuildOutPath>
+    </PropertyGroup>
+
+    <Target Name="BuildPowerShellModule">
+        <Message Importance="high" Text="Starting module build for '$(PwshModuleName)'" />
+        <Message Importance="high" Text="-----------------------%0A" />
+
+        <CallTarget Targets="SetupBuildDir" />
+        <CallTarget Targets="CopyPowerShellModuleFiles" />
+        <CallTarget Targets="CompileClassLibrary" />
+        <CallTarget Targets="BuildModuleHelpFiles" />
+
+        <Message Importance="high" Text="-----------------------%0A" />
+        <Message Importance="high" Text="Compiled module is located at -> $(ModuleBuildOutPath)" />
+    </Target>
+
+    <Target Name="SetupBuildDir">
+        <Message Importance="high" Condition="!Exists('$(BuildDirPath)')" Text="- Making build directory" />
+        <MakeDir Directories="$(BuildDirPath)" Condition="!Exists('$(BuildDirPath)')" />
+
+        <Message Importance="high" Condition="Exists('$(ModuleBuildOutPath)')" Text="- Removing previous build output directory" />
+        <RemoveDir Directories="$(ModuleBuildOutPath)" Condition="Exists('$(ModuleBuildOutPath)')" />
+
+        <Message Importance="high" Text="- Creating output directory" />
+        <MakeDir Directories="$(ModuleBuildOutPath)" />
+    </Target>
+
+    <Target Name="CopyPowerShellModuleFiles">
+        <ItemGroup>
+            <PwshModuleFiles Include="$(PwshModuleDirPath)$(DirSeparatorChar)**$(DirSeparatorChar)*.*" />
+        </ItemGroup>
+
+        <Message Importance="high" Text="- Copying PowerShell module files" />
+        <Copy SourceFiles="@(PwshModuleFiles)"
+              DestinationFolder="$(ModuleBuildOutPath)$(DirSeparatorChar)%(RecursiveDir)" />
+    </Target>
+
+    <Target Name="CompileClassLibrary">
+        <PropertyGroup>
+            <ClassLibAssemblyPath>$(ClassLibDirPath)$(DirSeparatorChar)bin$(DirSeparatorChar)Release$(DirSeparatorChar)net7.0$(DirSeparatorChar)publish$(DirSeparatorChar)SmallsOnline.TeamsAttendance.Lib.dll</ClassLibAssemblyPath>
+        </PropertyGroup>
+        <Message Importance="high" Text="- Compiling class library%0A" />
+        <Message Importance="high" Text=" ********* Compilation Output *********" />
+        <Message Importance="high" Text="/%0A" />
+
+        <MSBuild Projects="$(ClassLibDirPath)/Lib.csproj"
+                 Properties="Configuration=Release;Verbose=false"
+                 Targets="Restore;Publish" />
+
+        <Message Importance="high" Text="%0A\" />
+        <Message Importance="high" Text=" **************************************%0A" />
+
+        <Copy SourceFiles="$(ClassLibAssemblyPath)"
+              DestinationFolder="$(ModuleBuildOutPath)" />
+    </Target>
+
+    <Target Name="BuildModuleHelpFiles">
+        <Message Importance="high" Text="- Building help files" />
+        <Exec Command="pwsh -NoProfile -File &quot;.$(DirSeparatorChar)buildHelpDocs.ps1&quot; -ModuleOutDirPath &quot;$(ModuleBuildOutPath)&quot;" />
+    </Target>
+
+</Project>
