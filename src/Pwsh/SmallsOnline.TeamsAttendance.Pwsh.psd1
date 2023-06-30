@@ -94,12 +94,12 @@
         PSData = @{
 
             # Tags = @()
-            # LicenseUri = ""
-            # ProjectUri = ""
+            LicenseUri = "https://raw.githubusercontent.com/Smalls1652/SmallsOnline.TeamsAttendance/main/LICENSE"
+            RequireLicenseAcceptance = $false
+            ProjectUri = "https://github.com/Smalls1652/SmallsOnline.TeamsAttendance"
             # IconUri = ""
             # ReleaseNotes = ""
             # Prerelease = ""
-            # RequireLicenseAcceptance = $false
             # ExternalModuleDependencies = @()
 
         } 
