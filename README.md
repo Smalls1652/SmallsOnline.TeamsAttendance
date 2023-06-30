@@ -48,7 +48,7 @@ Download the ZIP artifact from [the latest release](https://github.com/Smalls165
 
 ## 🧑‍💻 Building from source
 
-In addition to the requirements listed in [#Requirements](#requirements), these need to be installed on your system:
+In addition to the requirements listed in [the requirements section](#Requirements), these need to be installed on your system:
 
 - [.NET 7 (or higher) SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
 - [`PlatyPS` v0.14.2](https://www.powershellgallery.com/packages/platyPS/0.14.2)
