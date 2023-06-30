@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow
+
+name: "PowerShell Module / Publish module"
+on:
+    workflow_dispatch:
+
+jobs:
+    publish-module:
+        name: "Publish module to PSGallery"
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: "Checkout GitHub Action"
+                uses: actions/checkout@v3
+                with:
+                    fetch-depth: 0
+        
+            -   name: "Setup .NET SDK"
+                uses: actions/setup-dotnet@v3
+                with:
+                  global-json-file: global.json
+
+            -   name: "Install PlatyPS PowerShell module"
+                shell: pwsh
+                run: |
+                    Install-Module -Name "PlatyPS" -Force
+
+            -   name: "Restore class library project"
+                shell: pwsh
+                run: |
+                    dotnet restore ./src/Lib
+
+            -   name: "Build module"
+                shell: pwsh
+                run: |
+                    ./build.ps1
+
+            -   name: "Publish to PSGallery"
+                shell: pwsh
+                run: |
+                    Publish-Module -Path "./build/SmallsOnline.TeamsAttendance.Pwsh/" -NuGetApiKey "${{ secrets.PSGALLERY_KEY }}" -Repository "PSGallery"
