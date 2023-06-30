@@ -22,6 +22,22 @@ It utilizes `Search-UnifiedAuditLog` in the `ExchangeOnlineManagement` PowerShel
 	* If you don't want to install the meta module, v1.2.8 of [`Microsoft.Graph.Authentication`](https://www.powershellgallery.com/packages/Microsoft.Graph.Authentication/1.28.0) and [`Microsoft.Graph.Users`](https://www.powershellgallery.com/packages/Microsoft.Graph.Users/1.28.0) are the exact requirements.
 * [`ImportExcel` v7.8.5 or higher](https://www.powershellgallery.com/packages/ImportExcel/7.8.5)
 
+To install those required modules you can run these commands, depending on the version of `PowerShellGet` you're using:
+
+```powershell
+# PowerShellGet v2 (Default)
+Install-Module -Name "ExchangeOnlineManagement" -MinimumVersion "3.2.0"
+Install-Module -Name "Microsoft.Graph" -MinimumVersion "1.2.8" -MaximumVersion "2.99"
+Install-Module -Name "ExchangeOnlineManagement" -MinimumVersion "7.8.5"
+```
+
+```powershell
+# PowerShellGet v3
+Install-PSResource -Name "ExchangeOnlineManagement" -Version "3.2.0"
+Install-PSResource -Name "Microsoft.Graph" -Version "1.2.8"
+Install-PSResource -Name "ExchangeOnlineManagement" -Version "7.8.5"
+```
+
 ## ⬇️ Installing
 
 ### PowerShell Gallery
