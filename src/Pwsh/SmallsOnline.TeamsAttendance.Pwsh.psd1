@@ -6,7 +6,7 @@
 
     RootModule         = "SmallsOnline.TeamsAttendance.Pwsh.psm1"
 
-    ModuleVersion      = "1.0.0"
+    ModuleVersion      = "1.0.1"
 
     # CompatiblePSEditions = @()
 
