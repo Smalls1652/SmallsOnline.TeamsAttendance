@@ -30,7 +30,7 @@ The module is available here [on PowerShell Gallery](https://www.powershellgalle
 
 Installing it from PowerShell Gallery will depend on which version of the `PowerShellGet` version you're using.
 
-#### `PowerShellGet` v2
+#### `PowerShellGet` v2 (Default)
 
 ```powershell
 Install-Module -Name "SmallsOnline.TeamsAttendance.Pwsh"
