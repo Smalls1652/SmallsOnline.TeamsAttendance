@@ -46,4 +46,4 @@ jobs:
                 shell: pwsh
                 working-directory: 
                 run: |
-                    Publish-Module -Path "./SmallsOnline.TeamsAttendance.Pwsh.psd1" -NuGetApiKey "${{ secrets.PSGALLERY_KEY }}" -Repository "PSGallery"
+                    Publish-Module -Path "./build/SmallsOnline.TeamsAttendance.Pwsh/" -NuGetApiKey "${{ secrets.PSGALLERY_KEY }}" -Repository "PSGallery"
