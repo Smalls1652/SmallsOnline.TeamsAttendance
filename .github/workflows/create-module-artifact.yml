@@ -48,4 +48,4 @@ jobs:
                 uses: actions/upload-artifact@v3
                 with:
                     name: "SmallsOnline.TeamsAttendance.Pwsh_${{ env.ARTIFACT_TAG }}"
-                    path: "./out/*"
+                    path: "./build/*"
