@@ -2,6 +2,8 @@
 
 name: "PowerShell Module / Create artifact"
 on:
+    push:
+        tags: [ 'v*.*.*', 'v*.*.*-*' ]
     workflow_dispatch:
 
 jobs:
