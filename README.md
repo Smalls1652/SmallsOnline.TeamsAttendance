@@ -32,7 +32,7 @@ Install-Module -Name "ExchangeOnlineManagement" -MinimumVersion "7.8.5"
 ```
 
 ```powershell
-# PowerShellGet v3
+# PowerShellGet v3 / PSResourceGet
 Install-PSResource -Name "ExchangeOnlineManagement" -Version "3.2.0"
 Install-PSResource -Name "Microsoft.Graph" -Version "1.2.8"
 Install-PSResource -Name "ExchangeOnlineManagement" -Version "7.8.5"
@@ -52,7 +52,7 @@ Installing it from PowerShell Gallery will depend on which version of the `Power
 Install-Module -Name "SmallsOnline.TeamsAttendance.Pwsh"
 ```
 
-#### `PowerShellGet` v3
+#### `PowerShellGet` v3 / `PSResourceGet`
 
 ```powershell
 Install-PSResource -Name "SmallsOnline.TeamsAttendance.Pwsh"
