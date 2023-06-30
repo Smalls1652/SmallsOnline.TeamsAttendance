@@ -24,6 +24,8 @@ Export Teams attendance reports collected with `Get-ExoTeamsAttendance` to CSV o
 
 ### Example 1
 ```powershell
+PS C:\> Connect-ExchangeOnline
+PS C:\> Connect-MgGraph
 PS C:\> $meetingRecords = Get-ExoTeamsAttendance -MeetingOrganizerUpn "jwinger1@greendalecc.edu" -StartDate "2023-06-01" -EndDate "2023-06-10"
 PS C:\> $meetingRecords | Export-ExoTeamsAttendance -OutputDirectory ".\jwinger1-meetings\"
 ```
@@ -33,6 +35,8 @@ Then export the reports to the directory `.\jwinger1-meetings\` as XLSX files.
 
 ### Example 2
 ```powershell
+PS C:\> Connect-ExchangeOnline
+PS C:\> Connect-MgGraph
 PS C:\> $meetingRecords = Get-ExoTeamsAttendance -MeetingOrganizerUpn "jwinger1@greendalecc.edu" -StartDate "2023-06-01" -EndDate "2023-06-10"
 PS C:\> $meetingRecords | Export-ExoTeamsAttendance -OutputDirectory ".\jwinger1-meetings\" -AsCsv
 ```

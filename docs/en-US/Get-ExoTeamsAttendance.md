@@ -31,6 +31,8 @@ Get Teams meeting attendance records based off of audit log entries in Microsoft
 
 ### EXAMPLE 1
 ```powershell
+PS C:\> Connect-ExchangeOnline
+PS C:\> Connect-MgGraph
 PS C:\> Get-ExoTeamsAttendance -MeetingOrganizerUpn "jwinger1@greendalecc.edu" -StartDate "2023-06-01" -EndDate "2023-06-10"
 ```
 
@@ -39,6 +41,8 @@ Meeting join/leave times will be converted to the local system's timezone.
 
 ### EXAMPLE 2
 ```powershell
+PS C:\> Connect-ExchangeOnline
+PS C:\> Connect-MgGraph
 PS C:\> Get-ExoTeamsAttendance -MeetingOrganizerUpn "jwinger1@greendalecc.edu" -StartDate "2023-06-01" -EndDate "2023-06-10" -TimeZoneId "Pacific Standard Time"
 ```
 
