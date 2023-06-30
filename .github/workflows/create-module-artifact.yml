@@ -48,14 +48,12 @@ jobs:
                     Install-Module -Name "PlatyPS" -Force
 
             -   name: "Restore class library project"
-                shell: pwsh
                 run: |
                     dotnet restore ./src/Lib
 
             -   name: "Build module"
-                shell: pwsh
                 run: |
-                    ./build.ps1
+                    dotnet msbuild -target:"BuildPowerShellModule" ./SmallsOnline.TeamsAttendance.proj
 
             -   name: "Upload artifact"
                 uses: actions/upload-artifact@v3

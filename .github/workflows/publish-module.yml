@@ -44,14 +44,12 @@ jobs:
                     ./installRequiredModules.ps1
 
             -   name: "Restore class library project"
-                shell: pwsh
                 run: |
                     dotnet restore ./src/Lib
 
             -   name: "Build module"
-                shell: pwsh
                 run: |
-                    ./build.ps1
+                    dotnet msbuild -target:"BuildPowerShellModule" ./SmallsOnline.TeamsAttendance.proj
 
             -   name: "Publish to PSGallery"
                 shell: pwsh
