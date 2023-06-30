@@ -20,7 +20,7 @@
 
     Description        = "Last ditch option for retrieving Teams meeting attendance reports."
 
-    PowerShellVersion  = "7.2"
+    PowerShellVersion  = "7.3"
 
     # PowerShellHostName = ""
 
